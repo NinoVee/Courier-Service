@@ -55,6 +55,247 @@
   }
 </script>
 <link rel="stylesheet" href="css/style.css">
+<style id="inline-fallback-styles">/* ==========================================================================
+   Thompson Medical Logistics — Design System
+   Tokens: Navy / Teal / White, Space Grotesk + Inter + IBM Plex Mono
+   Signature motif: the "live route" — a dashed transit line with a moving
+   pulse, used in the hero, section dividers, and the tracking demo panel.
+   ========================================================================== */
+
+:root{
+  --navy-950:#081524;
+  --navy-900:#0B2540;
+  --navy-800:#123258;
+  --navy-700:#1A4373;
+  --navy-600:#255790;
+  --teal-600:#0C8C82;
+  --teal-500:#0FA79B;
+  --teal-400:#2FC6B8;
+  --teal-100:#E3F7F4;
+  --ink:#0E1A2B;
+  --slate-600:#4C5C70;
+  --slate-400:#7C8CA0;
+  --mist-100:#F5F8F9;
+  --mist-50:#FAFCFC;
+  --line:#E2E9ED;
+  --white:#FFFFFF;
+  --amber-600:#B7791F;
+  --shadow-sm: 0 1px 2px rgba(11,37,64,.06), 0 1px 1px rgba(11,37,64,.04);
+  --shadow-md: 0 8px 24px rgba(11,37,64,.10), 0 2px 6px rgba(11,37,64,.06);
+  --shadow-lg: 0 24px 60px rgba(11,37,64,.16), 0 6px 16px rgba(11,37,64,.08);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+
+body{
+  font-family:'Inter', system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background:var(--white);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+.font-display{ font-family:'Space Grotesk', 'Inter', sans-serif; }
+.font-mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+
+h1,h2,h3,h4{ font-family:'Space Grotesk','Inter',sans-serif; letter-spacing:-0.01em; }
+
+::selection{ background:var(--teal-400); color:var(--navy-950); }
+
+/* Focus visibility (WCAG) */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--teal-500);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+/* Skip link */
+.skip-link{
+  position:absolute; left:-9999px; top:auto;
+  background:var(--navy-900); color:#fff; padding:.75rem 1.25rem; border-radius:0 0 10px 0;
+  z-index:100; font-weight:600;
+}
+.skip-link:focus{ left:0; top:0; }
+
+/* Scrollbar */
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{ background:var(--mist-100); }
+::-webkit-scrollbar-thumb{ background:var(--navy-600); border-radius:10px; }
+
+/* ---------- Container rhythm ---------- */
+.section{ padding-top:5.5rem; padding-bottom:5.5rem; }
+@media (max-width:768px){ .section{ padding-top:3.5rem; padding-bottom:3.5rem; } }
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  font-weight:600; font-size:.95rem; padding:.9rem 1.6rem; border-radius:999px;
+  transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
+  white-space:nowrap;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-primary{
+  background:var(--teal-500); color:var(--white); box-shadow:var(--shadow-sm);
+}
+.btn-primary:hover{ background:var(--teal-600); box-shadow:var(--shadow-md); transform:translateY(-2px); }
+.btn-outline{
+  background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,.55);
+}
+.btn-outline:hover{ background:rgba(255,255,255,.12); border-color:#fff; transform:translateY(-2px); }
+.btn-navy{ background:var(--navy-900); color:#fff; }
+.btn-navy:hover{ background:var(--navy-800); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.btn-ghost{ background:var(--mist-100); color:var(--navy-900); }
+.btn-ghost:hover{ background:var(--line); }
+
+/* ---------- Cards ---------- */
+.card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius-lg);
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:transparent; }
+
+/* ---------- Eyebrow / badges ---------- */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--teal-600); font-weight:600;
+}
+.eyebrow::before{
+  content:''; width:7px; height:7px; border-radius:50%; background:var(--teal-500);
+  box-shadow:0 0 0 3px var(--teal-100);
+}
+.badge{
+  display:inline-flex; align-items:center; gap:.4rem; font-size:.78rem; font-weight:600;
+  padding:.35rem .75rem; border-radius:999px; background:var(--teal-100); color:var(--teal-600);
+}
+
+/* ---------- Signature: the live route line ---------- */
+.route-rule{
+  position:relative; height:2px; width:100%;
+  background-image:linear-gradient(90deg, var(--line) 0, var(--line) 6px, transparent 6px, transparent 14px);
+  background-size:14px 2px; background-repeat:repeat-x;
+}
+.route-rule.on-dark{
+  background-image:linear-gradient(90deg, rgba(255,255,255,.25) 0, rgba(255,255,255,.25) 6px, transparent 6px, transparent 14px);
+}
+.route-pulse{
+  position:absolute; top:50%; width:9px; height:9px; margin-top:-4.5px; border-radius:50%;
+  background:var(--teal-400); box-shadow:0 0 0 4px rgba(47,198,184,.25), 0 0 12px rgba(47,198,184,.7);
+  animation:travel 5.5s linear infinite;
+}
+@keyframes travel{
+  0%{ left:0%; opacity:0; }
+  6%{ opacity:1; }
+  94%{ opacity:1; }
+  100%{ left:100%; opacity:0; }
+}
+
+/* Ticker chip states used in tracking demo */
+.status-chip{
+  display:inline-flex; align-items:center; gap:.45rem; font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem; letter-spacing:.06em; padding:.3rem .65rem; border-radius:999px;
+  background:rgba(255,255,255,.08); color:#CFE8E5; border:1px solid rgba(255,255,255,.16);
+}
+.status-chip .dot{ width:6px; height:6px; border-radius:50%; background:var(--teal-400); }
+
+/* Map pin pulse for service area map */
+.pin-pulse{ position:relative; }
+.pin-pulse::after{
+  content:''; position:absolute; inset:-8px; border-radius:50%;
+  border:2px solid var(--teal-400); opacity:0; animation:pin-ring 2.6s ease-out infinite;
+}
+@keyframes pin-ring{
+  0%{ transform:scale(.5); opacity:.9; }
+  100%{ transform:scale(1.9); opacity:0; }
+}
+
+/* ---------- Reveal-on-scroll ---------- */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+.reveal-stagger > * { transition-delay:calc(var(--i,0) * 80ms); }
+
+/* ---------- Nav ---------- */
+#site-header{ transition:box-shadow .25s ease, background-color .25s ease, padding .25s ease; }
+#site-header.scrolled{ box-shadow:0 4px 20px rgba(11,37,64,.08); }
+
+.nav-link{ position:relative; }
+.nav-link::after{
+  content:''; position:absolute; left:0; bottom:-6px; height:2px; width:0;
+  background:var(--teal-500); transition:width .22s ease;
+}
+.nav-link:hover::after, .nav-link[aria-current="page"]::after{ width:100%; }
+.nav-link[aria-current="page"]{ color:var(--teal-600); }
+
+/* Mobile menu */
+#mobile-menu{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+#mobile-menu.open{ max-height:640px; }
+
+/* ---------- FAQ accordion ---------- */
+.faq-item[open] > summary .chev{ transform:rotate(180deg); }
+.faq-item summary{ cursor:pointer; list-style:none; }
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item .chev{ transition:transform .25s ease; }
+.faq-answer{ animation:fade-in .3s ease; }
+@keyframes fade-in{ from{ opacity:0; transform:translateY(-4px);} to{ opacity:1; transform:translateY(0);} }
+
+/* ---------- Stat counters ---------- */
+.stat-num{ font-family:'Space Grotesk',sans-serif; font-variant-numeric:tabular-nums; }
+
+/* ---------- Marquee (trust bar) ---------- */
+.marquee-track{ display:flex; gap:3.5rem; animation:marquee 32s linear infinite; }
+.marquee-wrap:hover .marquee-track{ animation-play-state:paused; }
+@keyframes marquee{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+/* ---------- Forms ---------- */
+.field-label{ font-size:.82rem; font-weight:600; color:var(--navy-900); margin-bottom:.4rem; display:block; }
+.field-input{
+  width:100%; border:2px solid #000000; border-radius:var(--radius-sm); padding:.85rem 1.05rem;
+  font-size:.95rem; color:var(--ink); background:var(--white); transition:border-color .2s ease, box-shadow .2s ease;
+}
+.field-input::placeholder{ color:var(--slate-400); }
+.field-input:hover{ border-color:#000000; }
+.field-input:focus{ border-color:var(--teal-500); box-shadow:0 0 0 4px var(--teal-100); outline:none; }
+.field-input.field-error{ border-color:#C0392B; }
+
+/* Callout that points to the dedicated quote form */
+.quote-callout{
+  background:linear-gradient(135deg, var(--navy-900), var(--navy-800));
+  border-radius:var(--radius-lg);
+  border-left:6px solid var(--teal-400);
+  box-shadow:var(--shadow-md);
+}
+.field-error-msg{ color:#C0392B; font-size:.78rem; margin-top:.3rem; display:none; }
+.field-error-msg.show{ display:block; }
+
+/* Hero gradient background */
+.hero-bg{
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(47,198,184,.18), transparent 60%),
+    linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 45%, var(--navy-800) 100%);
+}
+
+/* Section wave / divider using route rule */
+.divider-route{ position:relative; height:2px; margin:0 auto; }
+
+/* Utility: mono data */
+.data-chip{
+  font-family:'IBM Plex Mono',monospace; font-size:.78rem; background:var(--mist-100);
+  border:1px solid var(--line); border-radius:8px; padding:.5rem .7rem; color:var(--navy-800);
+}
+
+/* Print */
+@media print{
+  #site-header, #site-footer, .no-print{ display:none !important; }
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,7 +303,7 @@
   "name": "Thompson Medical Logistics",
   "image": "https://www.thompsonmedlogistics.com/assets/og-cover.jpg",
   "url": "https://www.thompsonmedlogistics.com/",
-  "telephone": "+19099429789",
+  "telephone": "+17145550199",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
@@ -125,7 +366,7 @@
           <a href="contact.html" class="nav-link text-sm font-medium text-white/80 hover:text-white transition">Contact</a>
       </nav>
       <div class="hidden lg:flex items-center gap-3">
-        <a href="tel:+19099429789" class="text-sm text-white/80 hover:text-white font-medium flex items-center gap-2"><i class="fa-solid fa-phone-volume text-teal-400" aria-hidden="true"></i>(909) 942-9789</a>
+        <a href="tel:+17145550199" class="text-sm text-white/80 hover:text-white font-medium flex items-center gap-2"><i class="fa-solid fa-phone-volume text-teal-400" aria-hidden="true"></i>(714) 555-0199</a>
         <a href="quote.html" class="btn btn-primary">Request a Quote</a>
       </div>
       <button id="menu-toggle" class="lg:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -144,7 +385,7 @@
           <a href="compliance.html" class="block px-2 py-3 border-b border-white/10 text-white/90 hover:text-teal-400 font-medium">Compliance</a>
           <a href="careers.html" class="block px-2 py-3 border-b border-white/10 text-white/90 hover:text-teal-400 font-medium">Careers</a>
           <a href="contact.html" class="block px-2 py-3 border-b border-white/10 text-white/90 hover:text-teal-400 font-medium">Contact</a>
-      <a href="tel:+19099429789" class="flex items-center gap-2 py-3 text-teal-400 font-semibold"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Dispatch: (909) 942-9789</a>
+      <a href="tel:+17145550199" class="flex items-center gap-2 py-3 text-teal-400 font-semibold"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Dispatch: (714) 555-0199</a>
       <a href="quote.html" class="btn btn-primary w-full mt-2">Request a Quote</a>
     </div>
   </div>
@@ -165,8 +406,8 @@
           Reliable specimen transportation, STAT deliveries, pharmaceuticals, medical supplies, and scheduled courier routes &mdash; tracked from pickup to signature, every mile of the way.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 mt-9">
-          <a href="quote.html" class="btn btn-primary text-base px-8 py-4">Request a Quote <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
-          <a href="tel:+19099429789" class="btn btn-outline text-base px-8 py-4"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Dispatch: (909) 942-9789</a>
+          <a href="quote.html" class="btn btn-primary text-lg font-bold px-9 py-5 shadow-lg hover:shadow-xl">Request a Quote <i class="fa-solid fa-arrow-right text-sm" aria-hidden="true"></i></a>
+          <a href="tel:+17145550199" class="btn btn-outline text-base px-8 py-4"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Dispatch: (714) 555-0199</a>
         </div>
         <div class="flex flex-wrap items-center gap-x-8 gap-y-3 mt-10 text-white/60 text-sm">
           <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-teal-400" aria-hidden="true"></i> HIPAA &amp; OSHA Compliant</span>
@@ -237,6 +478,34 @@
     </div>
   </div>
 </div>
+
+<section class="bg-white border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-8">
+    <div class="grid sm:grid-cols-3 gap-4">
+      <a href="quote.html" class="group flex items-center gap-4 rounded-xl2 border-2 border-teal-500 bg-teal-100/60 px-6 py-5 transition hover:bg-teal-100 hover:-translate-y-0.5">
+        <span class="w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i></span>
+        <span>
+          <span class="block text-xs font-semibold tracking-wide uppercase text-teal-600">Get Started</span>
+          <span class="block text-lg font-bold text-navy-900 group-hover:text-teal-600 transition">Request a Quote &rarr;</span>
+        </span>
+      </a>
+      <a href="tel:+17145550199" class="group flex items-center gap-4 rounded-xl2 border-2 border-line px-6 py-5 transition hover:border-navy-600 hover:-translate-y-0.5">
+        <span class="w-12 h-12 rounded-full bg-navy-900 text-white flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i></span>
+        <span>
+          <span class="block text-xs font-semibold tracking-wide uppercase text-slate-500">Call Dispatch</span>
+          <span class="block text-lg font-bold text-navy-900 group-hover:text-teal-600 transition">(714) 555-0199</span>
+        </span>
+      </a>
+      <a href="mailto:dispatch@thompsonmedlogistics.com" class="group flex items-center gap-4 rounded-xl2 border-2 border-line px-6 py-5 transition hover:border-navy-600 hover:-translate-y-0.5">
+        <span class="w-12 h-12 rounded-full bg-navy-900 text-white flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
+        <span>
+          <span class="block text-xs font-semibold tracking-wide uppercase text-slate-500">Email Us</span>
+          <span class="block text-lg font-bold text-navy-900 group-hover:text-teal-600 transition break-all">dispatch@thompsonmedlogistics.com</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="bg-white py-14 border-b border-line">
   <div class="max-w-7xl mx-auto px-5 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -523,7 +792,7 @@
             <span class="font-semibold text-navy-900">Who do I contact for after-hours emergencies?</span>
             <i class="fa-solid fa-chevron-down chev text-teal-500 shrink-0" aria-hidden="true"></i>
           </summary>
-          <div class="faq-answer pb-5 text-slate-600 text-sm leading-relaxed">Our emergency dispatch line is staffed 24/7 at (909) 942-9789 for urgent, after-hours courier needs.</div>
+          <div class="faq-answer pb-5 text-slate-600 text-sm leading-relaxed">Our emergency dispatch line is staffed 24/7 at (714) 555-0911 for urgent, after-hours courier needs.</div>
         </details>
     </div>
   </div>
@@ -535,7 +804,7 @@
     <p class="text-white/65 max-w-xl mx-auto mb-8 reveal is-visible">Get a tailored quote in minutes, or call dispatch now for immediate STAT support.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center reveal is-visible">
       <a href="quote.html" class="btn btn-primary text-base px-8 py-4">Request a Quote</a>
-      <a href="tel:+19099429789" class="btn btn-outline text-base px-8 py-4"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Dispatch</a>
+      <a href="tel:+17145550199" class="btn btn-outline text-base px-8 py-4"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Dispatch</a>
     </div>
   </div>
 </section>
@@ -586,8 +855,8 @@
         <h3 class="text-white font-semibold text-sm tracking-wide uppercase mb-4">Contact</h3>
         <ul class="space-y-3 text-sm">
           <li class="flex items-start gap-2.5"><i class="fa-solid fa-location-dot mt-1 text-teal-400" aria-hidden="true"></i><span>1420 Harbor Gateway South, Santa Ana, CA 92705</span></li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-phone-volume text-teal-400" aria-hidden="true"></i><a href="tel:+19099429789" class="hover:text-teal-400">Dispatch: (909) 942-9789</a></li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-triangle-exclamation text-teal-400" aria-hidden="true"></i><a href="tel:+19099429789" class="hover:text-teal-400">Emergency: (909) 942-9789</a></li>
+          <li class="flex items-center gap-2.5"><i class="fa-solid fa-phone-volume text-teal-400" aria-hidden="true"></i><a href="tel:+17145550199" class="hover:text-teal-400">Dispatch: (714) 555-0199</a></li>
+          <li class="flex items-center gap-2.5"><i class="fa-solid fa-triangle-exclamation text-teal-400" aria-hidden="true"></i><a href="tel:+17145550911" class="hover:text-teal-400">Emergency: (714) 555-0911</a></li>
           <li class="flex items-center gap-2.5"><i class="fa-solid fa-envelope text-teal-400" aria-hidden="true"></i><a href="mailto:dispatch@thompsonmedlogistics.com" class="hover:text-teal-400">dispatch@thompsonmedlogistics.com</a></li>
         </ul>
       </div>
@@ -606,7 +875,218 @@
 <button id="to-top" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-teal-500 text-white shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition hover:bg-teal-600" aria-label="Back to top">
   <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </button>
-<script src="js/main.js"></script>
+<script>/* ==========================================================================
+   Thompson Medical Logistics — main.js
+   Vanilla JS: nav, scroll reveal, counters, FAQ, tracking demo, forms.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  /* ---------- Footer year ---------- */
+  document.querySelectorAll('[data-year]').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+
+  /* ---------- Header shadow on scroll ---------- */
+  var header = document.getElementById('site-header');
+  function onScroll() {
+    if (!header) return;
+    if (window.scrollY > 12) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile menu ---------- */
+  var menuBtn = document.getElementById('menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function () {
+      var isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      var iconOpen = menuBtn.querySelector('.icon-open');
+      var iconClose = menuBtn.querySelector('.icon-close');
+      if (iconOpen && iconClose) {
+        iconOpen.classList.toggle('hidden', isOpen);
+        iconClose.classList.toggle('hidden', !isOpen);
+      }
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && revealEls.length) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealEls.forEach(function (el, i) {
+      el.style.setProperty('--i', i % 8);
+      io.observe(el);
+    });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Animated stat counters ---------- */
+  var counters = document.querySelectorAll('[data-counter]');
+  function animateCounter(el) {
+    var target = parseFloat(el.getAttribute('data-counter'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = el.getAttribute('data-decimals') ? parseInt(el.getAttribute('data-decimals'), 10) : 0;
+    var duration = 1400;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var value = target * eased;
+      el.textContent = value.toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window && counters.length) {
+    var counterIO = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterIO.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach(function (el) { counterIO.observe(el); });
+  }
+
+  /* ---------- Live tracking demo (hero + technology section) ---------- */
+  var trackers = document.querySelectorAll('[data-tracker]');
+  trackers.forEach(function (tracker) {
+    var steps = tracker.querySelectorAll('[data-tracker-step]');
+    var label = tracker.querySelector('[data-tracker-label]');
+    var labels = ['Order received', 'Courier en route to pickup', 'Specimen in transit', 'Arriving at destination', 'Delivered — signed'];
+    if (!steps.length) return;
+    var idx = 0;
+    function activate(i) {
+      steps.forEach(function (s, si) {
+        s.classList.toggle('is-active', si <= i);
+        s.classList.toggle('is-current', si === i);
+      });
+      if (label) label.textContent = labels[i] || labels[labels.length - 1];
+    }
+    activate(0);
+    setInterval(function () {
+      idx = (idx + 1) % steps.length;
+      activate(idx);
+    }, 2200);
+  });
+
+  /* ---------- FAQ: only allow reasonable multi-open (native <details>) ---------- */
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    item.addEventListener('toggle', function () {
+      if (item.open) {
+        item.querySelector('.faq-answer') && item.querySelector('.faq-answer').setAttribute('data-open', 'true');
+      }
+    });
+  });
+
+  /* FAQ search filter (Services/FAQ pages) */
+  var faqSearch = document.getElementById('faq-search');
+  if (faqSearch) {
+    faqSearch.addEventListener('input', function () {
+      var q = faqSearch.value.trim().toLowerCase();
+      document.querySelectorAll('[data-faq-wrap] .faq-item').forEach(function (item) {
+        var text = item.textContent.toLowerCase();
+        item.style.display = text.indexOf(q) !== -1 ? '' : 'none';
+      });
+    });
+  }
+
+  /* ---------- Service area tab filter ---------- */
+  var countyButtons = document.querySelectorAll('[data-county-filter]');
+  if (countyButtons.length) {
+    countyButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var county = btn.getAttribute('data-county-filter');
+        countyButtons.forEach(function (b) {
+          b.classList.remove('btn-navy');
+          b.classList.add('btn-ghost');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('btn-navy');
+        btn.classList.remove('btn-ghost');
+        btn.setAttribute('aria-pressed', 'true');
+        document.querySelectorAll('[data-county-card]').forEach(function (card) {
+          var show = county === 'all' || card.getAttribute('data-county-card') === county;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  /* ---------- Generic form validation + fake-submit success state ---------- */
+  function validateField(field) {
+    var errorEl = field.parentElement.querySelector('.field-error-msg');
+    var valid = field.checkValidity();
+    field.classList.toggle('field-error', !valid);
+    if (errorEl) errorEl.classList.toggle('show', !valid);
+    return valid;
+  }
+
+  document.querySelectorAll('form[data-validate]').forEach(function (form) {
+    var fields = form.querySelectorAll('input[required], textarea[required], select[required], input[type=email]');
+    fields.forEach(function (field) {
+      field.addEventListener('blur', function () { validateField(field); });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var allValid = true;
+      fields.forEach(function (field) {
+        if (!validateField(field)) allValid = false;
+      });
+      if (!allValid) {
+        var firstInvalid = form.querySelector('.field-error');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+      var successEl = form.parentElement.querySelector('[data-form-success]');
+      form.classList.add('hidden');
+      if (successEl) {
+        successEl.classList.remove('hidden');
+        successEl.setAttribute('tabindex', '-1');
+        successEl.focus();
+      }
+    });
+  });
+
+  /* ---------- Back to top ---------- */
+  var toTop = document.getElementById('to-top');
+  if (toTop) {
+    document.addEventListener('scroll', function () {
+      toTop.classList.toggle('opacity-0', window.scrollY < 500);
+      toTop.classList.toggle('pointer-events-none', window.scrollY < 500);
+    }, { passive: true });
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
