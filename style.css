@@ -198,15 +198,61 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @keyframes marquee{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
 
 /* ---------- Forms ---------- */
-.field-label{ font-size:.82rem; font-weight:600; color:var(--navy-900); margin-bottom:.4rem; display:block; }
-.field-input{
-  width:100%; border:1.5px solid var(--line); border-radius:var(--radius-sm); padding:.8rem 1rem;
-  font-size:.95rem; color:var(--ink); background:var(--white); transition:border-color .2s ease, box-shadow .2s ease;
+.field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy-900);
 }
-.field-input:focus{ border-color:var(--teal-500); box-shadow:0 0 0 4px var(--teal-100); outline:none; }
-.field-input.field-error{ border-color:#C0392B; }
-.field-error-msg{ color:#C0392B; font-size:.78rem; margin-top:.3rem; display:none; }
-.field-error-msg.show{ display:block; }
+
+.field-input {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 0.8rem 1rem;
+
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-family: inherit;
+
+  box-sizing: border-box;
+  appearance: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+textarea.field-input {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.field-input:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.15);
+  outline: none;
+}
+
+.field-input.field-error {
+  border-color: #c0392b;
+}
+
+.field-error-msg {
+  display: none;
+  margin-top: 0.3rem;
+  color: #c0392b;
+  font-size: 0.78rem;
+}
+
+.field-error-msg.show {
+  display: block;
+}
 
 /* Hero gradient background */
 .hero-bg{
