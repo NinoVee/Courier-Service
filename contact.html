@@ -402,11 +402,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     </div>
 
     <div class="lg:col-span-3 reveal">
-      <div class="rounded-xl2 overflow-hidden border border-line mb-8 aspect-[16/9] bg-mist-100 flex items-center justify-center relative">
-        <div class="text-center text-slate-400">
-          <i class="fa-solid fa-map-location-dot text-5xl mb-3" aria-hidden="true"></i>
-          <p class="text-sm">Interactive map loads here &mdash; 1420 Harbor Gateway South, Santa Ana, CA 92705</p>
-        </div>
+      <div class="rounded-xl2 overflow-hidden border border-line mb-8 aspect-[16/9] relative">
+        <iframe
+          src="https://www.google.com/maps?q=1420+Harbor+Gateway+South,+Santa+Ana,+CA+92705&output=embed"
+          class="absolute inset-0 w-full h-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map showing Thompson Medical Logistics headquarters at 1420 Harbor Gateway South, Santa Ana, CA 92705"
+          aria-label="Interactive map of Thompson Medical Logistics headquarters">
+        </iframe>
       </div>
 
       <a href="quote.html" class="quote-callout group flex flex-col sm:flex-row items-center gap-6 p-8 sm:p-9 mb-10 no-underline transition hover:-translate-y-1 hover:shadow-lg">
